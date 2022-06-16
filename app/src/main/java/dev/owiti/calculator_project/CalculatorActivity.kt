@@ -15,6 +15,8 @@ class CalculatorActivity : AppCompatActivity() {
     lateinit var btnDivide: Button
     lateinit var tilNumber: TextInputLayout
     lateinit var tilNumberDecimal: TextInputLayout
+    lateinit var etNumber1 : EditText
+    lateinit var etNumber2 : EditText
     lateinit var tvOutput: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +30,9 @@ class CalculatorActivity : AppCompatActivity() {
         tilNumber = findViewById(R.id.tilNumber)
         tilNumberDecimal = findViewById(R.id.tilNumberDecimal)
         tvOutput = findViewById(R.id.tvOutput)
+        etNumber1=findViewById(R.id.etNumber2)
+        etNumber2=findViewById(R.id.etNumber2)
+
 
         btnAdd.setOnClickListener {
             val inputs = obtainInput()
@@ -50,8 +55,8 @@ class CalculatorActivity : AppCompatActivity() {
     }
 
     fun obtainInput(): Input?{
-        val number = tilNumber.text.toString()
-        val numberDecimal = tilNumberDecimal.text.toString()
+        val number = etNumber1.text.toString()
+        val numberDecimal = etNumber2.text.toString()
         if (number.isBlank()) {
             tilNumber.setError("Number is required")
             return null
@@ -64,6 +69,8 @@ class CalculatorActivity : AppCompatActivity() {
     }
 
     data class Input(var number: Int, var numberDecimal: Int)
+
+
 
     fun addition(number: Int, numberDecimal: Int) {
         var add = number + numberDecimal
@@ -85,5 +92,4 @@ class CalculatorActivity : AppCompatActivity() {
         var remainder=number%numberDecimal
         tvOutput.text=remainder.toString()
     }
-}
 }
